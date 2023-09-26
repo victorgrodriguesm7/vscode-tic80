@@ -175,8 +175,7 @@ const rawRuntimeTypes: RuntimeType[] = [
         ## Parameters
         - *x, y* : coordinates of the top left of the clipping region
         - *width* : width of the clipping region in pixels
-        - *height* : height of the clipping region in pixels
-        `,
+        - *height* : height of the clipping region in pixels`.replace(/    /g, ""),
         type: vscode.CompletionItemKind.Function,
         signature: {
             label: "function clip(x: number, y: number, width: number, height: number)",
@@ -209,8 +208,7 @@ const rawRuntimeTypes: RuntimeType[] = [
         <code>function cls(color?: number = 0)</code>
         This function clears/fills the entire screen using color. If no parameter is passed, index 0 of the palette is used.
         ## Parameters
-        - *color*: index (0..15) of a color in the current palette
-        `,
+        - *color*: index (0..15) of a color in the current palette`.replace(/    /g, ""),
         type: vscode.CompletionItemKind.Function,
         signature: {
             label: "function cls(color?: number = 0)",
@@ -234,8 +232,7 @@ const rawRuntimeTypes: RuntimeType[] = [
         - *x, y*: the coordinates of the ellipse's center
         - *a*: the horizontal radius of the ellipse in pixels
         - *b*: the vertical radius of the ellipse in pixels
-        - *color*: the index of the desired color in the current palette
-        `,
+        - *color*: the index of the desired color in the current palette`.replace(/    /g, ""),
         type: vscode.CompletionItemKind.Function,
         signature: {
             label: "function elli(x: number, y: number, a: number, b: number, color: number)",
@@ -259,6 +256,178 @@ const rawRuntimeTypes: RuntimeType[] = [
                 {
                     label: [57,71],
                     documentation: "Index of a color in the current palette"
+                }
+            ]
+        }
+    },
+    {
+        label: {
+            label: "ellib"
+        },
+        wikiPath: "ellib",
+        documentation: `
+        <code>function ellib(x: number, y: number, a: number, b: number, color: number)</code>
+        This function draws an ellipse border with the radiuses a b and color with its center at x, y. It uses the Bresenham algorithm.
+        ## Parameters
+        - *x, y*: the coordinates of the ellipse's center
+        - *a*: the horizontal radius of the ellipse in pixels
+        - *b*: the vertical radius of the ellipse in pixels
+        - *color*: the index of the desired color in the current palette`.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function ellib(x: number, y: number, a: number, b: number, color: number)",
+            parameters: [
+                {
+                    label: [15,24],
+                    documentation: "X coordinates"
+                },
+                {
+                    label: [25,35],
+                    documentation: "Y coordinates"
+                },
+                {
+                    label: [36,46],
+                    documentation: "Horizontal radius"
+                },
+                {
+                    label: [47,57],
+                    documentation: "Vertical radius"
+                },
+                {
+                    label: [58,72],
+                    documentation: "Index of a color in the current palette"
+                }
+            ]
+        }
+    },
+    {
+        label: {
+            label: "exit"
+        },
+        wikiPath: "exit",
+        documentation: `
+        <code>function exit(): void</code>
+        This function causes program execution to be terminated after the current TIC function ends. The entire function is executed, including any code that follows exit(). When the program ends you are returned to the console.`.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function exit(): void",
+            documentation: "This function causes program execution to be terminated after the current TIC function ends. The entire function is executed, including any code that follows exit(). When the program ends you are returned to the console.",
+            parameters: []
+        }
+    },
+    {
+        label: {
+            label: "fget"
+        },
+        wikiPath: "fget",
+        documentation: `
+        <code>function fget(spriteId: number, flag: number): boolean</code>
+        Returns true if the specified flag of the sprite is set. Each sprite has eight flags which can be used to store information or signal different conditions. For example, flag 0 might be used to indicate that the sprite is invisible, flag 6 might indicate that the sprite should be drawn scaled etc.
+        ## Parameters
+        - *spriteId*: Sprite index (0..511)
+        - *flag*: flag index to check
+        ## Returns
+        - Whether the flag was set`.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function fget(spriteId: number, flag: number): boolean",
+            parameters: [
+                {
+                    label: [14,30],
+                    documentation: "Sprite index (0..511)"
+                },
+                {
+                    label: [32,44],
+                    documentation: "Flag index to check (0..7)"
+                }
+            ]
+        }
+    },
+    {
+        label: {
+            label: "fset"
+        },
+        wikiPath: "fset",
+        documentation: `
+        <code>function fset(spriteId: number, flag: number, state: boolean): void</code>
+        This function sets the sprite flag to a given boolean value. Each sprite has eight flags which can be used to store information or signal different conditions. For example, flag 0 might be used to indicate that the sprite is invisible, flag 6 might indicate that the sprite should be drawn scaled etc.
+        ## Parameters
+        - *spriteId*: Sprite index (0..511)
+        - *flag*: index of flag (0..7) to set
+        - *state*: state to set (true/false)
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function fset(spriteId: number, flag: number, state: boolean): void",
+            parameters: [
+                {
+                    label: [14,30],
+                    documentation: "Sprite index (0..511)"
+                },
+                {
+                    label: [32, 44],
+                    documentation: "Flag index to check (0..7)"
+                },
+                {
+                    label: [46, 60],
+                    documentation: "State to set(true/false)"
+                }
+            ]
+        }
+    },
+    {
+        label: {
+            label: "font"
+        },
+        wikiPath: "font",
+        documentation: `
+        <code>function font(text: string, x: number, y: number, transcolor?: number, charWidth?: number, charHeight?: number, fixed?: boolean = false, scale?: number = 1): number</code>
+        This function will draw text to the screen using the foreground spritesheet as the font. Sprite #256 is used for ASCII code 0, #257 for code 1 and so on
+        ## Parameters
+        - *text*: Any string to be printedto the screen
+        - *x, y*: coordinates for printing the text
+        - *transcolor*: The palette index to use for transparency
+        - *char width*: distance between start of each character, in pixels
+        - *char height*: distance vertically between start of each character, in pixels, when priting multi-line text
+        - *fixed*: indicate wheter the font is fixed width
+        - *scale*: font scaling (defaults to 1)
+        ## Returns
+        - *text width*: returns the width of the text in pixels.`.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function font(text: string, x: number, y: number, transcolor?: number, charWidth?: number, charHeight?: number, fixed?: boolean = false, scale?: number = 1): number",
+            parameters: [
+                {
+                    label: [14, 26],
+                    documentation: "Any string to be printed to the screen"
+                },
+                {
+                    label: [28, 37],
+                    documentation: "X coordinates"
+                },
+                {
+                    label: [39, 48],
+                    documentation: "Y coordinates"
+                },
+                {
+                    label: [50, 69],
+                    documentation: "The palette index to use for transparency"
+                },
+                {
+                    label: [71,89],
+                    documentation: "Distance between start of each character, in pixels"
+                },
+                {
+                    label: [91,110],
+                    documentation: "Distance vertically between start of each character, in pixels, when priting multi-line text"
+                },
+                {
+                    label: [112,135],
+                    documentation: "Indicate wheter the font is fixed width"
+                },
+                {
+                    label: [137,155],
+                    documentation: "Font scaling (defaults to 1)"
                 }
             ]
         }
