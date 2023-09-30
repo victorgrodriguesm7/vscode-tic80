@@ -21,7 +21,7 @@ const rawRuntimeTypes: RuntimeType[] = [
         wikiPath: "btn",
         documentation: `
         <code>function btn(id: number): boolean</code>
-        This function allows you to read the status of TIC's controller buttons. It returns true if the button with the supplied id is currently in the pressed state and remains true for as long as the button is held down. To see if a button was just pressed, use btnp instead.
+        This function allows you to read the status of TIC's controller buttons. It returns true if the button with the supplied id is currently in the pressed state and remains true for as long as the button is held down. To see if a button was just pressed, use [btnp](${getWikiUrl("btnp")}) instead.
         ## Parameters
         - *id*: id (0..31) of the key we want to interrogate [see the KeyMap](${getWikiUrl("key-map")}) for reference or type help buttons in console).
         ## Returns
@@ -428,6 +428,223 @@ const rawRuntimeTypes: RuntimeType[] = [
                 {
                     label: [137,155],
                     documentation: "Font scaling (defaults to 1)"
+                }
+            ]
+        }
+    },
+    {
+        label: {
+            label: "key"
+        },
+        wikiPath: "key",
+        documentation: `
+        <code>function key(keyCode?: number): boolean</code>
+        The function returns if the key denoted by keycode is pressed, if no keycode is specified
+        then will return a boolean value indicating if any key is pressed.
+        ## Parameters
+        - *keyCode*: The key code to check (1..65), see the table below or type \`help keys\` in console.
+        ## Returns
+        - *pressed*: key is pressed(true/false)
+
+        ## Keycodes:
+        | Letters | Digits | Characters | Edits /<br>Directions | Modifiers /<br>Function Keys | Numeric Keypad |
+        |:---:|:---:|:---:|:---:|:---:|:---:|
+        | 01 = A | 27 = 0 | 37 = MINUS | 50 = RETURN | 62 = CAPSLOCK | 79 = NUMPAD0 |
+        | 02 = B | 28 = 1 | 38 = EQUALS | 51 = BACKSPACE | 63 = CTRL | 80 = NUMPAD1 |
+        | 03 = C | 29 = 2 | 39 = LEFTBRACKET | 52 = DELETE | 64 = SHIFT | 81 = NUMPAD2 |
+        | 04 = D | 30 = 3 | 40 = RIGHTBRACKET | 53 = INSERT | 65 = ALT | 82 = NUMPAD3 |
+        | 05 = E | 31 = 4 | 41 = BACKSLASH |  |  | 83 = NUMPAD4 |
+        | 06 = F | 32 = 5 | 42 = SEMICOLON | 54 = PAGEUP | 66 = ESC | 84 = NUMPAD5 |
+        | 07 = G | 33 = 6 | 43 = APOSTROPHE | 55 = PAGEDOWN | 67 = F1 | 85 = NUMPAD6 |
+        | 08 = H | 34 = 7 | 44 = GRAVE | 56 = HOME | 68 = F2 | 86 = NUMPAD7 |
+        | 09 = I | 35 = 8 | 45 = COMMA | 57 = END | 69 = F3 | 87 = NUMPAD8 |
+        | 10 = J | 36 = 9 | 46 = PERIOD | 58 = UP | 70 = F4 | 88 = NUMPAD9 |
+        | 11 = K |  | 47 = SLASH | 59 = DOWN | 71 = F5 | 89 = NUMPADPLUS |
+        | 12 = L |  | 48 = SPACE | 60 = LEFT | 72 = F6 | 90 = NUMPADMINUS |
+        | 13 = M |  | 49 = TAB | 61 = RIGHT | 73 = F7 | 91 = NUMPADMULTIPLY |
+        | 14 = N |  |  |  | 74 = F8 | 92 = NUMPADDIVIDE |
+        | 15 = O |  |  |  | 75 = F9 | 93 = NUMPADENTER |
+        | 16 = P |  |  |  | 76 = F10 | 94 = NUMPADPERIOD |
+        | 17 = Q |  |  |  | 77 = F11 |  |
+        | 18 = R |  |  |  | 78 = F12 |  |
+        | 19 = S |  |  |  |  |  |
+        | 20 = T |  |  |  |  |  |
+        | 21 = U |  |  |  |  |  |
+        | 22 = V |  |  |  |  |  |
+        | 23 = W |  |  |  |  |  |
+        | 24 = X |  |  |  |  |  |
+        | 25 = Y |  |  |  |  |  |
+        | 26 = Z |  |  |  |  |  |
+        `.replace(/    /g, ""), 
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function key(keyCode?: number): boolean",
+            parameters: [
+                {
+                    label: [13,29],
+                    documentation: getMarkDownOnly(`
+                    | Letters | Digits | Characters | Edits /<br>Directions | Modifiers /<br>Function Keys | Numeric Keypad |
+                    |:---:|:---:|:---:|:---:|:---:|:---:|
+                    | 01 = A | 27 = 0 | 37 = MINUS | 50 = RETURN | 62 = CAPSLOCK | 79 = NUMPAD0 |
+                    | 02 = B | 28 = 1 | 38 = EQUALS | 51 = BACKSPACE | 63 = CTRL | 80 = NUMPAD1 |
+                    | 03 = C | 29 = 2 | 39 = LEFTBRACKET | 52 = DELETE | 64 = SHIFT | 81 = NUMPAD2 |
+                    | 04 = D | 30 = 3 | 40 = RIGHTBRACKET | 53 = INSERT | 65 = ALT | 82 = NUMPAD3 |
+                    | 05 = E | 31 = 4 | 41 = BACKSLASH |  |  | 83 = NUMPAD4 |
+                    | 06 = F | 32 = 5 | 42 = SEMICOLON | 54 = PAGEUP | 66 = ESC | 84 = NUMPAD5 |
+                    | 07 = G | 33 = 6 | 43 = APOSTROPHE | 55 = PAGEDOWN | 67 = F1 | 85 = NUMPAD6 |
+                    | 08 = H | 34 = 7 | 44 = GRAVE | 56 = HOME | 68 = F2 | 86 = NUMPAD7 |
+                    | 09 = I | 35 = 8 | 45 = COMMA | 57 = END | 69 = F3 | 87 = NUMPAD8 |
+                    | 10 = J | 36 = 9 | 46 = PERIOD | 58 = UP | 70 = F4 | 88 = NUMPAD9 |
+                    | 11 = K |  | 47 = SLASH | 59 = DOWN | 71 = F5 | 89 = NUMPADPLUS |
+                    | 12 = L |  | 48 = SPACE | 60 = LEFT | 72 = F6 | 90 = NUMPADMINUS |
+                    | 13 = M |  | 49 = TAB | 61 = RIGHT | 73 = F7 | 91 = NUMPADMULTIPLY |
+                    | 14 = N |  |  |  | 74 = F8 | 92 = NUMPADDIVIDE |
+                    | 15 = O |  |  |  | 75 = F9 | 93 = NUMPADENTER |
+                    | 16 = P |  |  |  | 76 = F10 | 94 = NUMPADPERIOD |
+                    | 17 = Q |  |  |  | 77 = F11 |  |
+                    | 18 = R |  |  |  | 78 = F12 |  |
+                    | 19 = S |  |  |  |  |  |
+                    | 20 = T |  |  |  |  |  |
+                    | 21 = U |  |  |  |  |  |
+                    | 22 = V |  |  |  |  |  |
+                    | 23 = W |  |  |  |  |  |
+                    | 24 = X |  |  |  |  |  |
+                    | 25 = Y |  |  |  |  |  |
+                    | 26 = Z |  |  |  |  |  |`.replace(/    /g, ""))
+                }
+            ]
+        }
+    },
+    {
+        label: {
+            label: "keyp"
+        },
+        wikiPath: "keyp",
+        documentation: `
+        <code>function key(keyCode?: number, hold?: number, period?: number): boolean</code>
+        This function returns true if the given key is pressed but wasn't pressed in the previous frame. 
+        If no keycode is specified, it will return true if any key is pressed but wasn't in the previous frame.
+        Refer to [btnp](${getWikiUrl("btnp")}) for an explanation of the optional hold and period parameters.
+        ## Parameters
+        - *keyCode*: The key code to check (1..65), see the table below or type \`help keys\` in console.
+        - *hold*: Time in ticks before auto-repeat
+        - *period*: Time in ticks for auto-repeat interval
+        ## Returns
+        - *pressed*: key is pressed(true/false)
+
+        ## Keycodes:
+        | Letters | Digits | Characters | Edits /<br>Directions | Modifiers /<br>Function Keys | Numeric Keypad |
+        |:---:|:---:|:---:|:---:|:---:|:---:|
+        | 01 = A | 27 = 0 | 37 = MINUS | 50 = RETURN | 62 = CAPSLOCK | 79 = NUMPAD0 |
+        | 02 = B | 28 = 1 | 38 = EQUALS | 51 = BACKSPACE | 63 = CTRL | 80 = NUMPAD1 |
+        | 03 = C | 29 = 2 | 39 = LEFTBRACKET | 52 = DELETE | 64 = SHIFT | 81 = NUMPAD2 |
+        | 04 = D | 30 = 3 | 40 = RIGHTBRACKET | 53 = INSERT | 65 = ALT | 82 = NUMPAD3 |
+        | 05 = E | 31 = 4 | 41 = BACKSLASH |  |  | 83 = NUMPAD4 |
+        | 06 = F | 32 = 5 | 42 = SEMICOLON | 54 = PAGEUP | 66 = ESC | 84 = NUMPAD5 |
+        | 07 = G | 33 = 6 | 43 = APOSTROPHE | 55 = PAGEDOWN | 67 = F1 | 85 = NUMPAD6 |
+        | 08 = H | 34 = 7 | 44 = GRAVE | 56 = HOME | 68 = F2 | 86 = NUMPAD7 |
+        | 09 = I | 35 = 8 | 45 = COMMA | 57 = END | 69 = F3 | 87 = NUMPAD8 |
+        | 10 = J | 36 = 9 | 46 = PERIOD | 58 = UP | 70 = F4 | 88 = NUMPAD9 |
+        | 11 = K |  | 47 = SLASH | 59 = DOWN | 71 = F5 | 89 = NUMPADPLUS |
+        | 12 = L |  | 48 = SPACE | 60 = LEFT | 72 = F6 | 90 = NUMPADMINUS |
+        | 13 = M |  | 49 = TAB | 61 = RIGHT | 73 = F7 | 91 = NUMPADMULTIPLY |
+        | 14 = N |  |  |  | 74 = F8 | 92 = NUMPADDIVIDE |
+        | 15 = O |  |  |  | 75 = F9 | 93 = NUMPADENTER |
+        | 16 = P |  |  |  | 76 = F10 | 94 = NUMPADPERIOD |
+        | 17 = Q |  |  |  | 77 = F11 |  |
+        | 18 = R |  |  |  | 78 = F12 |  |
+        | 19 = S |  |  |  |  |  |
+        | 20 = T |  |  |  |  |  |
+        | 21 = U |  |  |  |  |  |
+        | 22 = V |  |  |  |  |  |
+        | 23 = W |  |  |  |  |  |
+        | 24 = X |  |  |  |  |  |
+        | 25 = Y |  |  |  |  |  |
+        | 26 = Z |  |  |  |  |  |
+        `.replace(/    /g, ""), 
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function key(keyCode?: number, hold?: number, period?: number): boolean",
+            parameters: [
+                {
+                    label: [13,29],
+                    documentation: getMarkDownOnly(`
+                    | Letters | Digits | Characters | Edits /<br>Directions | Modifiers /<br>Function Keys | Numeric Keypad |
+                    |:---:|:---:|:---:|:---:|:---:|:---:|
+                    | 01 = A | 27 = 0 | 37 = MINUS | 50 = RETURN | 62 = CAPSLOCK | 79 = NUMPAD0 |
+                    | 02 = B | 28 = 1 | 38 = EQUALS | 51 = BACKSPACE | 63 = CTRL | 80 = NUMPAD1 |
+                    | 03 = C | 29 = 2 | 39 = LEFTBRACKET | 52 = DELETE | 64 = SHIFT | 81 = NUMPAD2 |
+                    | 04 = D | 30 = 3 | 40 = RIGHTBRACKET | 53 = INSERT | 65 = ALT | 82 = NUMPAD3 |
+                    | 05 = E | 31 = 4 | 41 = BACKSLASH |  |  | 83 = NUMPAD4 |
+                    | 06 = F | 32 = 5 | 42 = SEMICOLON | 54 = PAGEUP | 66 = ESC | 84 = NUMPAD5 |
+                    | 07 = G | 33 = 6 | 43 = APOSTROPHE | 55 = PAGEDOWN | 67 = F1 | 85 = NUMPAD6 |
+                    | 08 = H | 34 = 7 | 44 = GRAVE | 56 = HOME | 68 = F2 | 86 = NUMPAD7 |
+                    | 09 = I | 35 = 8 | 45 = COMMA | 57 = END | 69 = F3 | 87 = NUMPAD8 |
+                    | 10 = J | 36 = 9 | 46 = PERIOD | 58 = UP | 70 = F4 | 88 = NUMPAD9 |
+                    | 11 = K |  | 47 = SLASH | 59 = DOWN | 71 = F5 | 89 = NUMPADPLUS |
+                    | 12 = L |  | 48 = SPACE | 60 = LEFT | 72 = F6 | 90 = NUMPADMINUS |
+                    | 13 = M |  | 49 = TAB | 61 = RIGHT | 73 = F7 | 91 = NUMPADMULTIPLY |
+                    | 14 = N |  |  |  | 74 = F8 | 92 = NUMPADDIVIDE |
+                    | 15 = O |  |  |  | 75 = F9 | 93 = NUMPADENTER |
+                    | 16 = P |  |  |  | 76 = F10 | 94 = NUMPADPERIOD |
+                    | 17 = Q |  |  |  | 77 = F11 |  |
+                    | 18 = R |  |  |  | 78 = F12 |  |
+                    | 19 = S |  |  |  |  |  |
+                    | 20 = T |  |  |  |  |  |
+                    | 21 = U |  |  |  |  |  |
+                    | 22 = V |  |  |  |  |  |
+                    | 23 = W |  |  |  |  |  |
+                    | 24 = X |  |  |  |  |  |
+                    | 25 = Y |  |  |  |  |  |
+                    | 26 = Z |  |  |  |  |  |`.replace(/    /g, ""))
+                },
+                {
+                    label: [30, 44],
+                    documentation: "Time in ticks before auto-repeat"
+                },
+                {
+                    label: [45,61],
+                    documentation: "Time in ticks for auto-repeat interval"
+                }
+            ]
+        }
+    },
+    {
+        label: {
+            label: "line"
+        },
+        wikiPath: "line",
+        documentation: `
+        <code>function line(x0: number, y0: number, x1: number, y1: number, color: number): void</code>
+        Draws a straight line from point (x0,y0) to point (x1,y1) in the specified color.
+        ## Parameters
+        - *x0, y0*: The coordinates of the start of the line
+        - *x1, y1*: The coordinates of the end of the line
+        - *color*: The index of the desired color in the current palette
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function line(x0: number, y0: number, x1: number, y1: number, color: number): void",
+            parameters: [
+                {
+                    label: [14,24],
+                    documentation: "X coordinate of the start"
+                },
+                {
+                    label: [25,36],
+                    documentation: "X coordinate of the start"
+                },
+                {
+                    label: [37,48],
+                    documentation: "X coordinate of the end"
+                },
+                {
+                    label: [49,60],
+                    documentation: "Y coordinate of the end"
+                },
+                {
+                    label: [61,75],
+                    documentation: "Index of the desired color in the current palette"
                 }
             ]
         }
