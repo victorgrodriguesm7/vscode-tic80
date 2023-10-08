@@ -651,6 +651,318 @@ const rawRuntimeTypes: RuntimeType[] = [
     },
     {
         label: {
+            label: "map"
+        },
+        wikiPath: "map",
+        documentation: `
+        <code>function map(x: number = 0,y: number = 0, width: number = 0, height: number = 17, screenX: number = 0, screenY = 0, colorKey: number | number[] = -1, scale: number = 1, remap?: Callback): void</code>
+        This function will draw the desired area of the map to a specified screen position.
+        ## Parameters
+        - *x, y*: The coordinates of the top left map cell to be drawn.
+        - *width, height*: Numbers of cells to draw horizontally and vertically.
+        - *screenX, screenY*: The screen coordinates where drawing of the map section will start.
+        - *colorKey*: The palette index or array of index to use for transparency.
+        - *scale*: Map scaling
+        - *remap*: An optional function called before every tile draw.
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function map(x: number = 0,y: number = 0, width: number = 0, height: number = 17, screenX: number = 0, screenY = 0, colorKey: number | number[] = -1, scale: number = 1, remap?: Callback): void",
+            parameters: [
+                {
+                    label: [13,26],
+                    documentation: "Map x coordinates"
+                },
+                {
+                    label: [27,40],
+                    documentation: "Map y coordinates"
+                },
+                {
+                    label: [41,59],
+                    documentation: "Width"
+                },
+                {
+                    label: [60,80],
+                    documentation: "Height"
+                },
+                {
+                    label: [81,101],
+                    documentation: "X coordinates"
+                },
+                {
+                    label: [102,114],
+                    documentation: "Y coordinates"
+                },
+                {
+                    label: [115,148],
+                    documentation: "The palette index or array of index to use for transparency"
+                },
+                {
+                    label: [150,167],
+                    documentation: "Map scale 1"
+                },
+                {
+                    label: [169,185],
+                    documentation: "Function called for every tile before draw"
+                }
+            ]
+        }
+    },
+    {
+        label: {
+            label: "memcpy"
+        },
+        wikiPath: "memcpy",
+        documentation: `
+        <code>function memcpy(to: number, from: number, length: number): void</code>
+        This function copies a continuous block of RAM from one address to another. Addresses are specified in hexadecimal format, values are decimal.
+        ## Parameters
+        - *to*: The address you want to write to
+        - *from*: The address you want to copy from
+        - *length*: The length of the memory block you want to copy (in bytes)
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function memcpy(to: number, from: number, length: number): void",
+            parameters: [
+                {
+                    label: [16,26],
+                    documentation: "The address that will be written"
+                },
+                {
+                    label: [27,40],
+                    documentation: "The address that will be copied"
+                },
+                {
+                    label: [41,56],
+                    documentation: "The length of memory block you want to copy"
+                }
+            ]
+        }
+    },
+    {
+        label: {
+            label: "memset"
+        },
+        wikiPath: "memset",
+        documentation: `
+        <code>function memset(addr: number, value: number, length: number): void</code>
+        This function sets a continuous block of RAM to the same value. The address is specified in hexadecimal format, the value in decimal.
+        ## Parameters
+        - *addr*: The address of the first byte of RAM you want to write to
+        - *value*: The value you want to write (0..255)
+        - *length*: The length of the memory block you want to set
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function memset(addr: number, value: number, length: number): void",
+            parameters: [
+                {
+                    label: [16,28],
+                    documentation: "The start of the address that you want to write"
+                },
+                {
+                    label: [29,43],
+                    documentation: "The value you want to write (0..255)"
+                },
+                {
+                    label: [44,59],
+                    documentation: "The length of the memory block you want to set"
+                }
+            ]
+        }
+    },
+    {
+        label: {
+            label: "mget"
+        },
+        wikiPath: "mget",
+        documentation: `
+        <code>function mget(x: number, y: number): number</code>
+        This function returns the index of the tile at the specified map coordinates
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function mget(x: number, y: number): number",
+            parameters: [
+                {
+                    label: [14,23],
+                    documentation: "X coordinates"
+                },
+                {
+                    label: [24,34],
+                    documentation: "Y coordinates"
+                }
+            ]
+        }
+    },
+    {
+        label: {
+            label: "mset"
+        },
+        wikiPath: "mset",
+        documentation: `
+        <code>function mset(x: number, y: number, tileId: number): void</code>
+        This function writes the specified background tile tile_id into the map at the given position. By default, changes to the map are lost when execution ends but they can be made permanent using [sync](${getWikiUrl("sync")})
+        ## Parameters
+        - *x, y*: Map coordinates
+        - *tileId*: Tile index (0-255)
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function mset(x: number, y: number, tileId: number): void",
+            parameters: [
+                {
+                    label: [14,23],
+                    documentation: "X coordinates"
+                },
+                {
+                    label: [24,34],
+                    documentation: "Y coordinates"
+                },
+                {
+                    label: [35,50],
+                    documentation: "Tile index (0-255)"
+                }
+            ]
+        }
+    },
+    {
+        label: {
+            label: "mouse"
+        },
+        wikiPath: "mouse",
+        documentation: `
+        <code>function mouse(): [x, y, left, middle, right, scrollX, scrollY]</code>
+        This function returns the mouse coordinates, a boolean value for the state of each mouse button (with true indicating that a button is pressed) and any change in the scroll wheel. Note that scrollx values are only returned for devices with a second scroll wheel, trackball etc.
+        ## Returns
+        - *x, y*: Coordinates of the mouse pointer
+        - *left*: State of Left Button (true/false)
+        - *middle*: State of Middle button (true/false)
+        - *right*: State of Right button (true/false)
+        - *scrollX*: X scroll delta since last frame (-31..32)
+        - *scrollY*: Y scroll delta since last frame (-31..32)
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function mouse(): [x, y, left, middle, right, scrollX, scrollY]",
+            parameters: []
+        }
+    },
+    {
+        label: {
+            label: "music"
+        },
+        wikiPath: "music",
+        documentation: `
+        <code>function music(track?: number -1, frame?: number = -1, loop?: boolean = true, sustain?: boolean = false, tempo?: number = -1, speed?: number = -1): void</code>
+        This function starts playing a track created in the [Music Editor](${getWikiUrl("Music-Editor")}), if no arg is passed the function will stop any music playing.
+        ## Parameters
+        - *track*: The id of the track to play (0..7)
+        - *frame*: The index of the frame to play from (0..15)
+        - *row*: The index of the row to play from (0..63)
+        - *loop*: Loop music (true) or play it once (false)
+        - *sustain*: Sustain notes after the end of each frame or stop them (true/false)
+        - *tempo*: Play track with the specified tempo
+        - *speed*: Play track with the specified speed
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function music(track?: number -1, frame?: number = -1, loop?: boolean = true, sustain?: boolean = false, tempo?: number = -1, speed?: number = -1): void",
+            parameters: [
+                {
+                    label: [15,32],
+                    documentation: "Id of the track to play (0..7)"
+                },
+                {
+                    label: [33,53],
+                    documentation: "Index of the frame to play (0..15)"
+                },
+                {
+                    label: [54,76],
+                    documentation: "If false it will play only once"
+                },
+                {
+                    label: [77,103],
+                    documentation: "Sustain notes after the end of each frame or stop them (true/false)"
+                },
+                {
+                    label: [104,124],
+                    documentation: "Play track with the specified tempo"
+                },
+                {
+                    label: [125,145],
+                    documentation: "Play track with the specified speed"
+                }
+            ]
+        }
+    },
+    {
+        label: {
+            label: "pix"
+        },
+        wikiPath: "pix",
+        documentation: `
+        <code>function pix(x: number, y: number, color?: number): number | void</code>
+        This function can read or write individual pixel color values. When called with a color argument, the pixel at the specified coordinates is set to that color. When called with only *x* *y* arguments, the color of the pixel at the specified coordinates is returned.
+        ## Parameters:
+        - *x, y*: Coordinates of the pixel
+        - *color*: The index (0..15) of a color in the current palette
+        ## Returns
+        - *color*: The index (0..15) of a color in the current palette
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function pix(x: number, y: number, color?: number): number | void",
+            parameters: [
+                {
+                    label: [13,22],
+                    documentation: "X coordinates"
+                },
+                {
+                    label: [23,33],
+                    documentation: "Y coordinates"
+                },
+                {
+                    label: [34,49],
+                    documentation: "Index of a color in the current palette"
+                }
+            ]
+        }
+    },
+    {
+        label: {
+            label: "pmem"
+        },
+        wikiPath: "pmem",
+        documentation: `
+        <code>function pmem(index: number, val32?: number): number</code>
+        The name "pmem" means persistent memory. This function allows you to save and retrieve data in one of the 256 individual 32-bit slots available in the cartridge's persistent memory. This is useful for saving high-scores, level advancement or achievements. Data is stored as unsigned 32-bit integer (i.e. in the range 0 to 4294967295).
+
+        When writing a new value, the previous value is returned.
+        ## Parameters
+        - *index*: an index (0.255) into the persistent memory of a cartridge
+        - *val32*: the 32-bit integer value you want to store. Omit this parameters to read.
+        ## Returns
+        - *val32*: the current/prior value saved to the specified memory slot.
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function pmem(index: number, val32?: number): number",
+            parameters: [
+                {
+                    label: [14,27],
+                    documentation: "Index (0..255) into the persistent memory of a cartridge"
+                },
+                {
+                    label: [28,43],
+                    documentation: "val32?: number"
+                }
+            ]
+        }
+    },
+    {
+        label: {
             label: "print",
         },
         wikiPath: "print",
