@@ -12,7 +12,7 @@ export type RuntimeType = {
 const getWikiUrl = (wikiPath: string): string => {
     return `https://github.com/nesbox/TIC-80/wiki/${wikiPath}`;
 }
-
+// TODO: Think in a better way to implement peek and poke functions!
 const rawRuntimeTypes: RuntimeType[] = [
     {
         label: {
@@ -208,7 +208,7 @@ const rawRuntimeTypes: RuntimeType[] = [
         <code>function cls(color?: number = 0)</code>
         This function clears/fills the entire screen using color. If no parameter is passed, index 0 of the palette is used.
         ## Parameters
-        - *color*: index (0..15) of a color in the current palette`.replace(/    /g, ""),
+        - *color*: The index (0..15) of a color in the current palette`.replace(/    /g, ""),
         type: vscode.CompletionItemKind.Function,
         signature: {
             label: "function cls(color?: number = 0)",
@@ -1012,7 +1012,243 @@ const rawRuntimeTypes: RuntimeType[] = [
             ]
         }
     },
-    
+    {
+        label: {
+            label: "rect"
+        },
+        wikiPath: "rect",
+        documentation: `
+        <code>function rect(x: number, y: number, width: number, height: number, color: number): void</code>
+        This function draws a filled rectangle at the specified position.
+
+        ## Parameters
+        - *x, y*: Coordinates of the top left corner of the rectangle
+        - *width*: The width the rectangle in pixels
+        - *height*: The height of the rectangle in pixels
+        - *color* : The index (0..15) of a color in the current palette
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function rect(x: number, y: number, width: number, height: number, color: number): void",
+            parameters: [
+                {
+                    label: [14,23],
+                    documentation: "X coordinates"
+                },
+                {
+                    label: [24,34],
+                    documentation: "Y coordinates"
+                },
+                {
+                    label: [35,49],
+                    documentation: "Width"
+                },
+                {
+                    label: [50,65],
+                    documentation: "Height"
+                },
+                {
+                    label: [66,80],
+                    documentation: "The index (0..15) of a color in the current palette"
+                }
+            ]
+        }
+    },
+    {
+        label: {
+            label: "rectb"
+        },
+        wikiPath: "rectb",
+        documentation: `
+        <code>function rectb(x: number, y: number, width: number, height: number, color: number): void</code>
+        This function draws a one pixel thick rectangle border.
+        ## Parameters
+        - *x, y*: Coordinates of the top left corner of the rectangle
+        - *width*: The width the rectangle in pixels
+        - *height*: The height of the rectangle in pixels
+        - *color* : The index (0..15) of a color in the current palette
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function rectb(x: number, y: number, width: number, height: number, color: number): void",
+            parameters: [
+                {
+                    label: [14,23],
+                    documentation: "X coordinates"
+                },
+                {
+                    label: [24,34],
+                    documentation: "Y coordinates"
+                },
+                {
+                    label: [35,49],
+                    documentation: "Width"
+                },
+                {
+                    label: [50,65],
+                    documentation: "Height"
+                },
+                {
+                    label: [66,80],
+                    documentation: "The index (0..15) of a color in the current palette"
+                }
+            ]
+        }
+    },
+    {
+        label: {
+            label: "reset"
+        },
+        wikiPath: "reset",
+        documentation: `
+        <code>function reset(): void</code>
+        Resets the TIC virtual "hardware" and immediately restarts the cartridge.
+
+        To simply return to the console, please use [exi]t(${getWikiUrl("exit")}).
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function reset(): void",
+            parameters: []
+        }
+    },
+    {
+        label: {
+            label: "sfx"
+        },
+        wikiPath: "sfx",
+        documentation: `
+        <code>function sfx(id: number, note?: number = -1, duration?: number = -1, channel?: number, volume?: number = 15, speed?: number = 0): void</code>
+        This function will play the sound with id created in the SFX Editor. Calling the function with an id of -1 will stop playing a channel: sfx(-1) stops the default channel (0), sfx(-1, nil, nil, n) stops playing channel 'n'.
+
+        The note can be supplied as an integer between 0 and 95 (representing 8 octaves of 12 notes each) or as a string giving the note name and octave. For example, a note value of '14' will play the note 'D' in the second octave. The same note could be specified by the string 'D-2'. Note names consist of two characters, the note itself (in upper case) followed by '-' to represent the natural note or '#' to represent a sharp. There is no option to indicate flat values. The available note names are therefore: C-, C#, D-, D#, E-, F-, F#, G-, G#, A-, A#, B-. The octave is specified using a single digit in the range 0 to 8.
+
+        The duration specifies how many ticks to play the sound for; since TIC-80 runs at 60 frames per second, a value of 30 represents half a second. A value of -1 will play the sound continuously.
+
+        The channel parameter indicates which of the four channels (0 to 3) to use.
+
+        Volume can be set within the range 0 to 15.
+
+        Speed in the range -4 to 3 specifies the speed at which the SFX envelope is traversed and corresponds with the speed setting in the SFX Editor.
+        ## Parameters
+        - *id*: The SFX id (0..63) or -1 to stop playing
+        - *note*: The note number or name (see below) or -1 to play the last note note assigned in the SFX Editor
+        - *duration*: The duration (number of frames) or -1 to play continuously
+        - *channel*: The audio channel to use (0..3)
+        - *volume*: The volume (0..15)
+        - *speed*: The speed (-4..3)
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function sfx(id: number, note?: number = -1, duration?: number = -1, channel?: number, volume?: number = 15, speed?: number = 0): void",
+            parameters: [
+                {
+                    label: [13,23],
+                    documentation: " The SFX id (0..63) or -1 to stop playing"
+                },
+                {
+                    label: [24,43],
+                    documentation: "The note number or name (see below) or -1 to play the last note note assigned in the SFX Editor"
+                },
+                {
+                    label: [44,67],
+                    documentation: "The duration (number of frames) or -1 to play continuously"
+                },
+                {
+                    label: [68,85],
+                    documentation: "The audio channel to use (0..3)"
+                },
+                {
+                    label: [86,107],
+                    documentation: "The volume (0..15)"
+                },
+                {
+                    label: [108,127],
+                    documentation: "The speed (-4..3)"
+                }
+            ]
+        }
+    },
+    {
+        label: {
+            label: "spr"
+        },
+        wikiPath: "spr",
+        documentation: `
+        <code>function spr(id: number, x: number, y: number, colorKey?: number = -1, scale?: number = 1, flip?: number = 0, rotate?: number = 0, width?: number = 1, height?: number = 1): void</code>
+        Draws the sprite number index at the x and y coordinate.
+        You can specify a colorKey in the palette which will be used as the transparent color or use a value of -1 for an opaque sprite.
+        The sprite can be scaled up by a desired factor. For example, a scale factor of 2 means an 8x8 pixel sprite is drawn to a 16x16 area of the screen.
+
+        ## Parameters
+        - *id*: Index of the sprite (0..511)
+        - *x, y*: Coordinates of the top left corner of the sprite.
+        - *colorKey*: The palette index or array of index to use for transparency..
+        - *scale*: Sprite scale factor.
+        - *flip*: Flip the sprite vertically or horizontally or both.
+        - *rotate*: Rotate the sprite by 0, 90, 180 or 270 degrees.
+        - *width*: Width of composite sprite
+        - *height*: Height of composite sprite
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function spr(id: number, x: number, y: number, colorKey?: number = -1, scale?: number = 1, flip?: number = 0, rotate?: number = 0, width?: number = 1, height?: number = 1): void",
+            parameters: [
+                {
+                    label: [13,23],
+                    documentation: "Index of the sprite (0..511)"
+                },
+                {
+                    label: [24,34],
+                    documentation: "X coordinates"
+                },
+                {
+                    label: [35,45],
+                    documentation: "Y coordinates"
+                },
+                {
+                    label: [46,69],
+                    documentation: "The palette index or array of index to use for transparency"
+                },
+                {
+                    label: [70,89],
+                    documentation: "Sprite scale factor"
+                },
+                {
+                    label: [90,108],
+                    documentation: getMarkDownOnly(`
+                        Flip the sprite vertically or horizontally or both.
+
+                        Possible values:
+                        - 0 = No Flip
+                        - 1 = Flip horizontally
+                        - 2 = Flip vertically
+                        - 3 = Flip both vertically and horizontally
+                    `.replace(/    /g, ""))
+                },
+                {
+                    label: [109,129],
+                    documentation: getMarkDownOnly(`
+                    Rotate the sprite by 0, 90, 180 or 270 degrees.
+
+                    Possible values:
+                    - 0 = No rotation
+                    - 1 = 90° rotation
+                    - 2 = 180° rotation
+                    - 3 = 270° rotation
+                `.replace(/    /g, ""))
+                },
+                {
+                    label: [130,149],
+                    documentation: "Width of sprite"
+                },
+                {
+                    label: [150,170],
+                    documentation: "Height of sprite"
+                }
+            ]
+        }
+    },
 ]
 
 const addWikiReference = (runtimeType: RuntimeType): RuntimeType => {
