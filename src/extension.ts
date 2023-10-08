@@ -26,7 +26,7 @@ export function activate(context: vscode.ExtensionContext) {
 			if (currValue == null) return [];
 
 			return runtimeTypes
-					.filter(({ label }) => label.label.includes(currValue))
+					.filter(({ label }) => label.label.includes(currValue) || currValue.length == 0)
 					.map(({ label, documentation, type }) => {
 						const item = new vscode.CompletionItem(label, type);
 						const doc = getMarkDownOnly(documentation);
