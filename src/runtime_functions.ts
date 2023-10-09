@@ -1249,6 +1249,187 @@ const rawRuntimeTypes: RuntimeType[] = [
             ]
         }
     },
+    {
+        label: {
+            label: "sync"
+        },
+        wikiPath: "sync",
+        documentation: `
+        <code>function sync(mask: number = 0, bank: number = 0, toCart: boolean = false): void</code>
+        Use sync() to save data you modify during runtime and would like to persist, or to restore runtime data from the cartridge. For example, if you have manipulated the runtime memory (e.g. by using mset), you can reset the active state by calling sync(0,0,false). This resets the whole of runtime memory to the contents of bank 0.
+        
+        Note that sync is never used to load code from banks; this is done automatically. All data is restored from cartridge on every startup.
+        ## Parameters
+        - *mask*: Mask of sections you want to switch
+        - *bank*: memory bank (0..7)
+        - *toCart*: If true save memory from runtime to bank/cartridge else load data from bank to runtime
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function sync(mask: number = 0, bank: number = 0, toCart: boolean = false): void",
+            parameters: [
+                {
+                    label: [14,30],
+                    documentation: getMarkDownOnly(`
+                    The mask of sections you want to switch:
+                    \`\`\`javascript
+                    tiles   = 1<<0 -- 1
+                    sprites = 1<<1 -- 2
+                    map     = 1<<2 -- 4
+                    sfx     = 1<<3 -- 8
+                    music   = 1<<4 -- 16
+                    palette = 1<<5 -- 32
+                    flags   = 1<<6 -- 64
+                    screen  = 1<<7 -- 128 (as of 0.90)
+                    \`\`\``.replace(/    /g, ""))
+                },
+                {
+                    label: [31,48],
+                    documentation: "Memory bank (0..7)"
+                },
+                {
+                    label: [49,73],
+                    documentation: "If true save memory from runtime to bank/cartridge else load data from bank to runtime"
+                }
+            ]
+        }
+    },
+    {
+        label: {
+            label: "ttri"
+        },
+        wikiPath: "ttri",
+        documentation: `
+        <code>function (x1: number, y1: number, x2: number, y2: number, x3: number, y3: number, u1: number, v1: number, u2: number, v2: number, u3: number, textSrc?: number = 0, chromaKey?: number = -1, z1: number = 0, z2: number = 0, z3: number = 0): void</code>
+        This function draws a triangle filled with texture from either SPRITES or MAP RAM or VBANK.
+        ## Parameters
+        - *x1, y1*: The coordinates of the first corner
+        - *x2, y2*: The coordinates of the second corner
+        - *x3, y3*: The coordinates of the third corner
+        - *u1, v1*: The UV coordinates of the first corner
+        - *u2, v2*: The UV coordinates of the second corner
+        - *u3, v3*: The UV coordinates of the third corner
+        - *texsrc*: If 0 (default), the triangle's texture is read from SPRITES RAM. If 1, the texture comes from the MAP RAM.
+          If 2, the texture comes from the screen RAM in the next VBANK (the one following the VBANK on which the ttri() is set to be displayed) (e.g., a ttri() on vbank(0) with the texsrc=2 will use vbank(1) as its texture at the time of its execution). Although there is technically no vbank(2), this can be used on a ttri() with texsrc=2 that's rendered on vbank(1).
+        - *chromaKey*: The palette index or array of index to use for transparency
+        - *z1, z2, z3*: Depth parameters for texture correction
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function (x1: number, y1: number, x2: number, y2: number, x3: number, y3: number, u1: number, v1: number, u2: number, v2: number, u3: number, v3: number, textSrc?: number = 0, chromaKey?: number = -1, z1: number = 0, z2: number = 0, z3: number = 0): void",
+            parameters: [
+                {
+                    label: [10,20],
+                    documentation: "The X coordinates of the first corner"
+                },
+                {
+                    label: [21,32],
+                    documentation: "The Y coordinates of the first corner"
+                },
+                {
+                    label: [33,44],
+                    documentation: "The X coordinates of the second corner"
+                },
+                {
+                    label: [45,56],
+                    documentation: "The Y coordinates of the second corner"
+                },
+                {
+                    label: [57,68],
+                    documentation: "The X coordinates of the third corner"
+                },
+                {
+                    label: [69,80],
+                    documentation: "The Y coordinates of the third corner"
+                },
+                {
+                    label: [81,92],
+                    documentation: "The UV coordinates of the first corner"
+                },
+                {
+                    label: [93,104],
+                    documentation: "The UV coordinates of the first corner"
+                },
+                {
+                    label: [105,116],
+                    documentation: "The UV coordinates of the second corner"
+                },
+                {
+                    label: [117,128],
+                    documentation: "The UV coordinates of the third corner"
+                },
+                {
+                    label: [129,140],
+                    documentation: "The UV coordinates of the third corner"
+                },
+                {
+                    label: [141,152],
+                    documentation: "If 0 (default), the triangle's texture is read from SPRITES RAM. If 1, the texture comes from the MAP RAM. If 2, the texture comes from the screen RAM in the next VBANK (the one following the VBANK on which the ttri() is set to be displayed) (e.g., a ttri() on vbank(0) with the texsrc=2 will use vbank(1) as its texture at the time of its execution). Although there is technically no vbank(2), this can be used on a ttri() with texsrc=2 that's rendered on vbank(1)."
+                },
+                {
+                    label: [175,199],
+                    documentation: "The palette index or array of index to use for transparency"
+                },
+                {
+                    label: [200,215],
+                    documentation: "Depth parameters for texture correction"
+                },
+                {
+                    label: [216,231],
+                    documentation: "Depth parameters for texture correction"
+                },
+                {
+                    label: [232,247],
+                    documentation: "Depth parameters for texture correction"
+                }
+            ]
+        }
+    },
+    {
+        label: {
+            label: "time"
+        },
+        wikiPath: "time",
+        documentation: `
+        <code>function time(): number</code>
+        This function returns the number of milliseconds elapsed since the cartridge began execution. Useful for keeping track of time, animating items and triggering events.
+        ## Returns
+        - *ticks*: The number of milliseconds elapsed since the game was started
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function time(): number",
+            parameters: [
+            ]
+        }
+    },
+    {
+        label: {
+            label: "trace"
+        },
+        wikiPath: "trace",
+        documentation: `
+        <code>function trace(message: string, color: number = 15): void</code>
+        This is a service function, useful for debugging. It prints the supplied string or variable to the console in the (optional) color specified.
+        ## Parameters
+        - *message*: The string to print
+        - *color*: The index (0..15) of a color in the current palette
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function trace(message: string, color: number = 15): void",
+            parameters: [
+                {
+                    label: [15,30],
+                    documentation: "The string to print"
+                },
+                {
+                    label: [31,50],
+                    documentation: "The index (0..15) of a color in the current palette"
+                }
+            ]
+        }
+    },
 ]
 
 const addWikiReference = (runtimeType: RuntimeType): RuntimeType => {
