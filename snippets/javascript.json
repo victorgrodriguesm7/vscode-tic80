@@ -1,0 +1,52 @@
+{
+    "BDR": {
+        "scope": "javascript,typescript",
+		"prefix": "bdr",
+        "body": [
+			"function BDR(scanline){",
+            "\t$0",
+            "}"
+		],
+		"description": "Allows you to execute code between the rendering of each scan line."
+    },
+    "BOOT": {
+        "scope": "javascript,typescript",
+		"prefix": "boot",
+        "body": [
+			"function BOOT(){",
+            "\t$0",
+            "}"
+		],
+		"description": "Is called a single time when your cartridge is booted"
+    },
+    "OVR": {
+        "scope": "javascript,typescript",
+		"prefix": "ovr",
+        "body": [
+			"function OVR(){",
+            "\t$0",
+            "}"
+		],
+		"description": "The OVR callback is the final step in rendering a frame."
+    },
+    "SCN": {
+        "scope": "javascript,typescript",
+		"prefix": "scn",
+        "body": [
+			"function SCN(scanline){",
+            "\t$0",
+            "}"
+		],
+		"description": "(Deprecated) Allows you to execute code between the rendering of each scan line."
+    },
+    "TIC": {
+        "scope": "javascript,typescript",
+		"prefix": "tic",
+        "body": [
+			"function TIC(){",
+            "\t$0",
+            "}"
+		],
+		"description": "The TIC function is the 'main' update/draw callback and must be present in every program."
+    }
+}

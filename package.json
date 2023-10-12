@@ -7,11 +7,18 @@
     "vscode": "^1.82.0"
   },
   "categories": [
-    "Other"
+    "Extension Packs",
+    "Snippets"
   ],
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "snippets": [
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript.json"
+      }
+    ],
     "commands": [
       {
         "command": "tic80.startTic",
