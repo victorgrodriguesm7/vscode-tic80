@@ -1430,6 +1430,143 @@ const rawRuntimeTypes: RuntimeType[] = [
             ]
         }
     },
+    {
+        label: {
+            label: "tri"
+        },
+        wikiPath: "tri",
+        documentation: `
+        <code>function tri(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number, color: number): void</code>
+        This function draws a triangle filled with *color*, using the supplied vertices.
+        ## Parameters
+        - *x1, y1*: The coordinates of the first triangle corner
+        - *x2, y2*: The coordinates of the second corner
+        - *x3, y3*: The coordinates of the third corner
+        - *color*: The index (0..15) of a color in the current palette
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function tri(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number, color: number): void",
+            parameters: [
+                {
+                    label: [13,23],
+                    documentation: "X coordinates of first corner"
+                },
+                {
+                    label: [24,35],
+                    documentation: "Y coordinates of first corner"
+                },
+                {
+                    label: [36,47],
+                    documentation: "X coordinates of second corner"
+                },
+                {
+                    label: [48,59],
+                    documentation: "Y coordinates of second corner"
+                },
+                {
+                    label: [60,71],
+                    documentation: "X coordinates of third corner"
+                },
+                {
+                    label: [72,83],
+                    documentation: "Y coordinates of third corner"
+                },
+                {
+                    label: [84,98],
+                    documentation: "The index (0..15) of a color in the current palette"
+                }
+            ]
+        }
+    },
+    {
+        label: {
+            label: "trib"
+        },
+        wikiPath: "trib",
+        documentation: `
+        <code>function trib(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number, color: number): void</code>
+        This function draws a triangle border with color, using the supplied vertices.
+        ## Paramters
+        - *x1, y1*: The coordinates of the first triangle corner
+        - *x2, y2*: The coordinates of the second corner
+        - *x3, y3*: The coordinates of the third corner
+        - *color*: The index (0..15) of a color in the current palette
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function trib(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number, color: number): void",
+            parameters: [
+                {
+                    label: [14,24],
+                    documentation: "X coordinates of first corner"
+                },
+                {
+                    label: [25,36],
+                    documentation: "Y coordinates of first corner"
+                },
+                {
+                    label: [37,48],
+                    documentation: "X coordinates of second corner"
+                },
+                {
+                    label: [49,60],
+                    documentation: "Y coordinates of second corner"
+                },
+                {
+                    label: [62,72],
+                    documentation: "X coordinates of third corner"
+                },
+                {
+                    label: [73,84],
+                    documentation: "Y coordinates of third corner"
+                },
+                {
+                    label: [85,99],
+                    documentation: "The index (0..15) of a color in the current palette"
+                }
+            ]
+        }
+    },
+    {
+        label: {
+            label: "tstamp"
+        },
+        wikiPath: "tstamp",
+        documentation: `
+        <code>function tstamp(): number</code>
+        This function returns the number of seconds elapsed since January 1st, 1970. This can be quite useful for creating persistent games which evolve over time between plays.
+        ## Returns
+        - *timestamp*: The current Unix timestamp in seconds
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function tstamp(): number",
+            parameters: []
+        }
+    },
+    {
+        label: {
+            label: "vbank"
+        },
+        wikiPath: "vbank",
+        documentation: `
+        <code>function vbank(bankId: number): void</code>
+        VRAM is double-banked, such that the entire 16kb VRAM address space can be "swapped" at any time between banks 0 and 1. This is most commonly used for layering effects (background vs foreground layers, or a HUD that sits overtop of your main gameplay area, etc).
+        ## Paramters
+        - *id*: The VRAM bank ID to switch to (0 or 1)
+        `.replace(/    /g, ""),
+        type: vscode.CompletionItemKind.Function,
+        signature: {
+            label: "function vbank(bankId: number): void",
+            parameters: [
+                {
+                    label: [15,29],
+                    documentation: "The VRAM bank ID to switch to (0 or 1)"
+                }
+            ]
+        }
+    },
 ]
 
 const addWikiReference = (runtimeType: RuntimeType): RuntimeType => {
