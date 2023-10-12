@@ -1300,7 +1300,7 @@ const rawRuntimeTypes: RuntimeType[] = [
         },
         wikiPath: "ttri",
         documentation: `
-        <code>function (x1: number, y1: number, x2: number, y2: number, x3: number, y3: number, u1: number, v1: number, u2: number, v2: number, u3: number, textSrc?: number = 0, chromaKey?: number = -1, z1: number = 0, z2: number = 0, z3: number = 0): void</code>
+        <code>function ttri(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number, u1: number, v1: number, u2: number, v2: number, u3: number, textSrc?: number = 0, chromaKey?: number = -1, z1: number = 0, z2: number = 0, z3: number = 0): void</code>
         This function draws a triangle filled with texture from either SPRITES or MAP RAM or VBANK.
         ## Parameters
         - *x1, y1*: The coordinates of the first corner
@@ -1316,70 +1316,74 @@ const rawRuntimeTypes: RuntimeType[] = [
         `.replace(/    /g, ""),
         type: vscode.CompletionItemKind.Function,
         signature: {
-            label: "function (x1: number, y1: number, x2: number, y2: number, x3: number, y3: number, u1: number, v1: number, u2: number, v2: number, u3: number, v3: number, textSrc?: number = 0, chromaKey?: number = -1, z1: number = 0, z2: number = 0, z3: number = 0): void",
+            label: "function ttri(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number, u1: number, v1: number, u2: number, v2: number, u3: number, v3: number, textSrc?: number = 0, chromaKey?: number = -1, z1: number = 0, z2: number = 0, z3: number = 0): void",
             parameters: [
                 {
-                    label: [10,20],
+                    label: [14,24],
                     documentation: "The X coordinates of the first corner"
                 },
                 {
-                    label: [21,32],
+                    label: [25,36],
                     documentation: "The Y coordinates of the first corner"
                 },
                 {
-                    label: [33,44],
+                    label: [37,48],
                     documentation: "The X coordinates of the second corner"
                 },
                 {
-                    label: [45,56],
+                    label: [49,60],
                     documentation: "The Y coordinates of the second corner"
                 },
                 {
-                    label: [57,68],
+                    label: [61,72],
                     documentation: "The X coordinates of the third corner"
                 },
                 {
-                    label: [69,80],
+                    label: [73,84],
                     documentation: "The Y coordinates of the third corner"
                 },
                 {
-                    label: [81,92],
+                    label: [85,96],
                     documentation: "The UV coordinates of the first corner"
                 },
                 {
-                    label: [93,104],
+                    label: [97,108],
                     documentation: "The UV coordinates of the first corner"
                 },
                 {
-                    label: [105,116],
+                    label: [109,120],
                     documentation: "The UV coordinates of the second corner"
                 },
                 {
-                    label: [117,128],
+                    label: [121,132],
+                    documentation: "The UV coordinates of the second corner"
+                },
+                {
+                    label: [133,144],
                     documentation: "The UV coordinates of the third corner"
                 },
                 {
-                    label: [129,140],
+                    label: [145,156],
                     documentation: "The UV coordinates of the third corner"
                 },
                 {
-                    label: [141,152],
+                    label: [157,178],
                     documentation: "If 0 (default), the triangle's texture is read from SPRITES RAM. If 1, the texture comes from the MAP RAM. If 2, the texture comes from the screen RAM in the next VBANK (the one following the VBANK on which the ttri() is set to be displayed) (e.g., a ttri() on vbank(0) with the texsrc=2 will use vbank(1) as its texture at the time of its execution). Although there is technically no vbank(2), this can be used on a ttri() with texsrc=2 that's rendered on vbank(1)."
                 },
                 {
-                    label: [175,199],
+                    label: [179,203],
                     documentation: "The palette index or array of index to use for transparency"
                 },
                 {
-                    label: [200,215],
+                    label: [204,219],
                     documentation: "Depth parameters for texture correction"
                 },
                 {
-                    label: [216,231],
+                    label: [220,235],
                     documentation: "Depth parameters for texture correction"
                 },
                 {
-                    label: [232,247],
+                    label: [236,251],
                     documentation: "Depth parameters for texture correction"
                 }
             ]
