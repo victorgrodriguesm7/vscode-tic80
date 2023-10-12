@@ -5,6 +5,7 @@ import { getMarkDownOnly } from '../utils/markdown';
 
 type DefinitionResolver = vscode.CompletionItemProvider<vscode.CompletionItem>["provideCompletionItems"];
 type SignatureProvider = vscode.SignatureHelpProvider['provideSignatureHelp'];
+type HoverProvider = vscode.HoverProvider['provideHover']
 
 export const completionDefinitionResolver: DefinitionResolver = (document, position, _token, _context) => {
     const linePrefix = document.lineAt(position).text.slice(0, position.character);
@@ -52,4 +53,27 @@ export const signatureHelpProvider: SignatureProvider = (document, position, _to
             currType?.signature
         ]
     } as vscode.ProviderResult<vscode.SignatureHelp>
+}
+
+export const hoverProvider: HoverProvider = (document, position, token) => {
+    const wordRange = document.getWordRangeAtPosition(position);
+    const word = document.getText(wordRange);
+
+    const type = runtimeTypes
+        .find(({ label: { label }}) => label === word);
+    
+    if (type == null) return { contents: [] };
+
+    const contents = [
+        getMarkDownOnly(`
+            \`\`\`javascript
+            ${type.signature.label}
+            \`\`\`
+            `.replace(/    /g, "")
+        )
+    ]
+
+    return {
+        contents
+    };
 }

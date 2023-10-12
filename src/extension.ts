@@ -26,9 +26,11 @@ export function activate(context: vscode.ExtensionContext) {
 		// TODO: Add Backspace
 	)
 
-	// TODO: Add Hover to all Runtime functions
+	const hover = vscode.languages.registerHoverProvider('javascript', {
+		provideHover: javascript.hoverProvider
+	});
 
-	context.subscriptions.push(disposable, customDefinitions, signatures);
+	context.subscriptions.push(disposable, customDefinitions, signatures, hover);
 }
 
 // This method is called when your extension is deactivated
